@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Universe", "Universe\Univer
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{55AAE055-20C6-4996-AD38-AD5980584374}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mod_winrt", "mod_winrt\mod_winrt.vcxproj", "{6E4D9D9C-1744-41CA-AD38-CF236A740009}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{55AAE055-20C6-4996-AD38-AD5980584374}.Release|x64.Build.0 = Release|x64
 		{55AAE055-20C6-4996-AD38-AD5980584374}.Release|x86.ActiveCfg = Release|Win32
 		{55AAE055-20C6-4996-AD38-AD5980584374}.Release|x86.Build.0 = Release|Win32
+		{6E4D9D9C-1744-41CA-AD38-CF236A740009}.Debug|x64.ActiveCfg = Debug|x64
+		{6E4D9D9C-1744-41CA-AD38-CF236A740009}.Debug|x64.Build.0 = Debug|x64
+		{6E4D9D9C-1744-41CA-AD38-CF236A740009}.Debug|x86.ActiveCfg = Debug|Win32
+		{6E4D9D9C-1744-41CA-AD38-CF236A740009}.Debug|x86.Build.0 = Debug|Win32
+		{6E4D9D9C-1744-41CA-AD38-CF236A740009}.Release|x64.ActiveCfg = Release|x64
+		{6E4D9D9C-1744-41CA-AD38-CF236A740009}.Release|x64.Build.0 = Release|x64
+		{6E4D9D9C-1744-41CA-AD38-CF236A740009}.Release|x86.ActiveCfg = Release|Win32
+		{6E4D9D9C-1744-41CA-AD38-CF236A740009}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,6 +22,9 @@
     <Filter Include="Source Files\interfaces">
       <UniqueIdentifier>{30ce4cf9-49d0-43af-ae74-de1af287a72e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\platforms">
+      <UniqueIdentifier>{3bb5cc62-41b5-43c4-9a72-5e6f13de2ac2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\core\interface.hpp">
@@ -32,6 +35,9 @@
     </ClInclude>
     <ClInclude Include="includes\interfaces\winvk.hpp">
       <Filter>Header Files\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\platforms\winrt.hpp">
+      <Filter>Header Files\platforms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
