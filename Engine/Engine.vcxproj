@@ -131,7 +131,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="includes\core\color.hpp" />
     <ClInclude Include="includes\core\interface.hpp" />
+    <ClInclude Include="includes\core\level.hpp" />
+    <ClInclude Include="includes\core\scene.hpp" />
     <ClInclude Include="includes\interfaces\noop.hpp" />
     <ClInclude Include="includes\interfaces\winvk.hpp" />
     <ClInclude Include="includes\platforms\winrt.hpp" />

@@ -8,7 +8,7 @@ struct winrt_specifics {
 	HWND handle;
 };
 
-int winrt_allocate(winrt_platform* winrt) {
+int winrt_allocate(av_winrt_platform* winrt) {
 	struct winrt_specifics* specifics = (struct winrt_specifics*)malloc(sizeof(struct winrt_specifics));
 	if (NULL == specifics) {
 		return 1;
@@ -18,7 +18,7 @@ int winrt_allocate(winrt_platform* winrt) {
 	return 0;
 }
 
-void winrt_destroy(winrt_platform* winrt) {
+void winrt_destroy(av_winrt_platform* winrt) {
 	if (NULL == winrt) {
 		return;
 	}
@@ -30,7 +30,7 @@ void winrt_destroy(winrt_platform* winrt) {
 	}
 }
 
-int winrt_initalize(winrt_platform& winrt, const wchar_t* app_name, unsigned int width, unsigned int height) {
+int winrt_initalize(av_winrt_platform& winrt, const wchar_t* app_name, unsigned int width, unsigned int height) {
 	HRESULT result = S_OK;
 	HINSTANCE current_process = GetModuleHandle(NULL);
 	if (0 != register_window_class(current_process)) {
@@ -55,12 +55,12 @@ int winrt_initalize(winrt_platform& winrt, const wchar_t* app_name, unsigned int
 	return 0;
 }
 
-void winrt_show(winrt_platform& winrt) {
+void winrt_show(av_winrt_platform& winrt) {
 	ShowWindow(winrt.specifics->handle, SW_SHOW);
 }
 
 // FIXME: It seems that the close event isn't detected until I move the window a little. Strange.
-void winrt_wait_next_event(winrt_platform& winrt) {
+void winrt_wait_next_event(av_winrt_platform& winrt) {
 	MSG msg = {};
 	if (!GetMessage(&msg, winrt.specifics->handle, 0, 0)) {
 		winrt.last_event = QUIT;

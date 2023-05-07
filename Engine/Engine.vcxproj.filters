@@ -25,6 +25,9 @@
     <Filter Include="Header Files\platforms">
       <UniqueIdentifier>{3bb5cc62-41b5-43c4-9a72-5e6f13de2ac2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{cbed0e2c-c31c-4958-86f9-a936b7610045}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\core\interface.hpp">
@@ -38,6 +41,15 @@
     </ClInclude>
     <ClInclude Include="includes\platforms\winrt.hpp">
       <Filter>Header Files\platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\core\level.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\core\scene.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\core\color.hpp">
+      <Filter>Header Files\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
