@@ -28,6 +28,9 @@
     <Filter Include="Source Files\core">
       <UniqueIdentifier>{cbed0e2c-c31c-4958-86f9-a936b7610045}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\renderers">
+      <UniqueIdentifier>{02dc546b-9631-4006-9ede-bbc05a9f0fc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\core\interface.hpp">
@@ -50,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="includes\core\color.hpp">
       <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\renderers\khrvulkan.hpp">
+      <Filter>Header Files\renderers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

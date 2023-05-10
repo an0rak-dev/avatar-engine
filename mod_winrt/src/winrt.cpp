@@ -14,7 +14,7 @@ int winrt_allocate(av_winrt_platform* winrt) {
 		return 1;
 	}
 	winrt->specifics = specifics;
-	winrt->last_event = NONE;
+	winrt->last_event = WINRT_NONE;
 	return 0;
 }
 
@@ -63,10 +63,10 @@ void winrt_show(av_winrt_platform& winrt) {
 void winrt_wait_next_event(av_winrt_platform& winrt) {
 	MSG msg = {};
 	if (!GetMessage(&msg, winrt.specifics->handle, 0, 0)) {
-		winrt.last_event = QUIT;
+		winrt.last_event = WINRT_QUIT;
 		return;
 	}
 	TranslateMessage(&msg);
 	DispatchMessageW(&msg);
-	winrt.last_event = NONE;
+	winrt.last_event = WINRT_NONE;
 }

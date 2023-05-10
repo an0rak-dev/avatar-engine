@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{55aae055-20c6-4996-ad38-ad5980584374}</ProjectGuid>
-    <RootNamespace>Engine</RootNamespace>
+    <ProjectGuid>{f1f1a44b-5c15-485e-8940-a60384075502}</ProjectGuid>
+    <RootNamespace>modvulkan</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,12 +76,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Engine\includes\renderers;$(ProjectDir)\includes</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)\lib</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -91,7 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Engine\includes\renderers;$(ProjectDir)\includes</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,6 +102,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)\lib</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -106,12 +112,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Engine\includes\renderers;$(ProjectDir)\includes</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)\lib</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -121,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Engine\includes\renderers;$(ProjectDir)\includes</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,20 +138,29 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)\lib</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="includes\core\color.hpp" />
-    <ClInclude Include="includes\core\interface.hpp" />
-    <ClInclude Include="includes\core\level.hpp" />
-    <ClInclude Include="includes\core\scene.hpp" />
-    <ClInclude Include="includes\interfaces\noop.hpp" />
-    <ClInclude Include="includes\interfaces\winvk.hpp" />
-    <ClInclude Include="includes\platforms\winrt.hpp" />
-    <ClInclude Include="includes\renderers\khrvulkan.hpp" />
+    <ClCompile Include="src\extensions.cpp" />
+    <ClCompile Include="src\khrvulkan.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\interfaces\noop.cpp" />
-    <ClCompile Include="src\interfaces\winvk.cpp" />
+    <Library Include="lib\vulkan-1.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\mod_vulkan\extensions.hpp" />
+    <ClInclude Include="includes\vk_video\vulkan_video_codecs_common.h" />
+    <ClInclude Include="includes\vk_video\vulkan_video_codec_h264std.h" />
+    <ClInclude Include="includes\vk_video\vulkan_video_codec_h264std_decode.h" />
+    <ClInclude Include="includes\vk_video\vulkan_video_codec_h264std_encode.h" />
+    <ClInclude Include="includes\vk_video\vulkan_video_codec_h265std.h" />
+    <ClInclude Include="includes\vk_video\vulkan_video_codec_h265std_decode.h" />
+    <ClInclude Include="includes\vk_video\vulkan_video_codec_h265std_encode.h" />
+    <ClInclude Include="includes\vulkan\vk_platform.h" />
+    <ClInclude Include="includes\vulkan\vulkan.h" />
+    <ClInclude Include="includes\vulkan\vulkan_core.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

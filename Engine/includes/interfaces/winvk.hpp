@@ -2,10 +2,12 @@
 #define AVATAR_INTERFACE_WINVK
 
 #include <platforms/winrt.hpp>
+#include <renderers/khrvulkan.hpp>
 #include <core/scene.hpp>
 
 typedef struct winvk_interface {
 	av_winrt_platform platform;
+	av_vulkan renderer;
 } av_winvk_interface;
 
 int winvk_allocate(av_winvk_interface* itf);
