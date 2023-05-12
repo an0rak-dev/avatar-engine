@@ -1,4 +1,5 @@
 #include <interfaces/winvk.hpp>
+#include <stdio.h>
 #include <stdlib.h>
 
 int winvk_allocate(av_winvk_interface* itf) {
@@ -22,6 +23,9 @@ void winvk_destroy(av_winvk_interface* itf) {
 }
 
 int winvk_init(av_winvk_interface& itf, const wchar_t* app_name) {
+#ifdef _DEBUG
+	printf("Interface Configuration : Platform=Win32, Renderer=Vulkan\n");
+#endif
 	if (0 != winrt_initalize(itf.platform, app_name, 1280, 720)) {
 		return 1;
 	}
