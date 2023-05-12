@@ -141,3 +141,20 @@ int vulkan_initialize(av_vulkan& vulkan, enum av_supported_surface surface_kind)
 
 	return 0;
 }
+
+int vulkan_reset(av_vulkan& vulkan) {
+	VkCommandBufferBeginInfo begin_info = { VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO };
+	begin_info.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+	if (VK_SUCCESS != vkBeginCommandBuffer(vulkan.specifics->command_buffer, &begin_info)) {
+		return 1;
+	}
+	return 0;
+}
+
+void vulkan_clear(av_vulkan& vulkan, float red, float green, float blue, float alpha) {
+	// TODO
+}
+
+void vulkan_present(av_vulkan& vulkan) {
+	// TODO
+}

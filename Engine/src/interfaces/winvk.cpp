@@ -49,5 +49,7 @@ void winvk_poll_event(av_winvk_interface& itf) {
 }
 
 void winvk_render(av_winvk_interface& itf, av_scene& scene) {
-
+	vulkan_reset(itf.renderer);
+	vulkan_clear(itf.renderer, scene.background_color.red, scene.background_color.green, scene.background_color.blue, scene.background_color.alpha);
+	vulkan_present(itf.renderer);
 }
