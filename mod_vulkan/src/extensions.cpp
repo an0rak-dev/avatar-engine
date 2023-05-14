@@ -7,7 +7,7 @@
 unsigned int available_extensions_count = 0;
 VkExtensionProperties available[MAX_AVAILABLE_EXTENSIONS] = {};
 
-int modvulkan_init_extensions(struct av_modvulkan_extensions& extensions) {
+int modvulkan_extensions_init(struct av_modvulkan_extensions& extensions) {
 	if (available_extensions_count == 0) {
 		if (VK_SUCCESS != vkEnumerateInstanceExtensionProperties(NULL, &available_extensions_count, NULL)) {
 			return 1;
@@ -23,14 +23,14 @@ int modvulkan_init_extensions(struct av_modvulkan_extensions& extensions) {
 	return 0;
 }
 
-void modvulkan_enable(struct av_modvulkan_extensions& extensions, const char* extension_name) {
+void modvulkan_extensions_enable(struct av_modvulkan_extensions& extensions, const char* extension_name) {
 	if (extensions.enabled_count == MAX_ENABLED_EXTENSIONS) {
 		return;
 	}
 	extensions.enabled[extensions.enabled_count++] = extension_name;
 }
 
-bool modvulkan_validate_extensions(struct av_modvulkan_extensions& extensions) {
+bool modvulkan_extensions_validate(struct av_modvulkan_extensions& extensions) {
 	for (int i = 0; i < extensions.enabled_count; i++) {
 		bool found = false;
 		for (unsigned int j = 0; j < available_extensions_count; j++) {
