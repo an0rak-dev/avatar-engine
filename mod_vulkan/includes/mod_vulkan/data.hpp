@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef AVATAR_MODVULKAN_DATA
 #define AVATAR_MODVULKAN_DATA
 

@@ -26,13 +26,19 @@ int winvk_init(av_winvk_interface& itf, const wchar_t* app_name) {
 #ifdef _DEBUG
 	printf("Interface Configuration : Platform=Win32, Renderer=Vulkan\n");
 #endif
-	if (0 != winrt_initalize(itf.platform, app_name, 1280, 720)) {
+	if (0 != winrt_initialize(itf.platform, app_name, 1280, 720)) {
 		return 1;
 	}
 
 	if (0 != vulkan_initialize(itf.renderer, KHRVK_WIN32)) {
 		return 2;
 	}
+
+	HINSTANCE app_instance = winrt_get_instance(itf.platform);
+	HWND window_handle = winrt_get_handle(itf.platform);
+	// TODO : Create VkKhrSurface from vulkan directly here -- haha, no vulkan headers here.
+	vulkan_attach_surface(itf.renderer, app_instance, window_handle);
+
 	return 0;
 }
 
