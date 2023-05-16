@@ -23,7 +23,7 @@ int modvulkan_device_init(struct vulkan_specifics& specifics, struct device_requ
 	if (VK_SUCCESS != vkEnumeratePhysicalDevices(specifics.instance, &devices_count, devices)) {
 		return 4;
 	}
-	for (int i = 0; i < devices_count; i++) {
+	for (unsigned int i = 0; i < devices_count; i++) {
 		unsigned int queue_families_count = 0;
 		unsigned int device_extension_count = 0;
 		VkPhysicalDeviceProperties properties = {};

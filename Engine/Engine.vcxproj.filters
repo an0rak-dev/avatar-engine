@@ -13,49 +13,88 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\core">
-      <UniqueIdentifier>{f4d3b696-98fa-4eaf-a16e-16e9e20084c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\interfaces">
-      <UniqueIdentifier>{dee3ee95-598a-4e77-969e-78aa0e15ac06}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\interfaces">
       <UniqueIdentifier>{30ce4cf9-49d0-43af-ae74-de1af287a72e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\platforms">
+    <Filter Include="Header Files\avatar">
+      <UniqueIdentifier>{b170a3e9-dcf9-48f0-b1c8-399eeb4fb96c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\avatar\core">
+      <UniqueIdentifier>{f4d3b696-98fa-4eaf-a16e-16e9e20084c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\avatar\interfaces">
+      <UniqueIdentifier>{dee3ee95-598a-4e77-969e-78aa0e15ac06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\avatar\platforms">
       <UniqueIdentifier>{3bb5cc62-41b5-43c4-9a72-5e6f13de2ac2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core">
-      <UniqueIdentifier>{cbed0e2c-c31c-4958-86f9-a936b7610045}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\renderers">
+    <Filter Include="Header Files\avatar\renderers">
       <UniqueIdentifier>{02dc546b-9631-4006-9ede-bbc05a9f0fc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vulkan">
+      <UniqueIdentifier>{0acdcebe-969f-4bef-af43-b5c286309d53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vk_video">
+      <UniqueIdentifier>{ef6071fa-79f4-434b-b6fc-e16a18fd624b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\core\interface.hpp">
-      <Filter>Header Files\core</Filter>
+    <ClInclude Include="includes\thirdparties\vulkan\vk_platform.h">
+      <Filter>Header Files\vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="includes\interfaces\noop.hpp">
-      <Filter>Header Files\interfaces</Filter>
+    <ClInclude Include="includes\thirdparties\vulkan\vulkan.h">
+      <Filter>Header Files\vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="includes\interfaces\winvk.hpp">
-      <Filter>Header Files\interfaces</Filter>
+    <ClInclude Include="includes\thirdparties\vulkan\vulkan_core.h">
+      <Filter>Header Files\vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="includes\platforms\winrt.hpp">
-      <Filter>Header Files\platforms</Filter>
+    <ClInclude Include="includes\thirdparties\vulkan\vulkan_win32.h">
+      <Filter>Header Files\vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="includes\core\level.hpp">
-      <Filter>Header Files\core</Filter>
+    <ClInclude Include="includes\thirdparties\vk_video\vulkan_video_codec_h264std.h">
+      <Filter>Header Files\vk_video</Filter>
     </ClInclude>
-    <ClInclude Include="includes\core\scene.hpp">
-      <Filter>Header Files\core</Filter>
+    <ClInclude Include="includes\thirdparties\vk_video\vulkan_video_codec_h264std_decode.h">
+      <Filter>Header Files\vk_video</Filter>
     </ClInclude>
-    <ClInclude Include="includes\core\color.hpp">
-      <Filter>Header Files\core</Filter>
+    <ClInclude Include="includes\thirdparties\vk_video\vulkan_video_codec_h264std_encode.h">
+      <Filter>Header Files\vk_video</Filter>
     </ClInclude>
-    <ClInclude Include="includes\renderers\khrvulkan.hpp">
-      <Filter>Header Files\renderers</Filter>
+    <ClInclude Include="includes\thirdparties\vk_video\vulkan_video_codec_h265std.h">
+      <Filter>Header Files\vk_video</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\thirdparties\vk_video\vulkan_video_codec_h265std_decode.h">
+      <Filter>Header Files\vk_video</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\thirdparties\vk_video\vulkan_video_codec_h265std_encode.h">
+      <Filter>Header Files\vk_video</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\thirdparties\vk_video\vulkan_video_codecs_common.h">
+      <Filter>Header Files\vk_video</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\renderers\khrvulkan.hpp">
+      <Filter>Header Files\avatar\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\core\color.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\core\interface.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\core\level.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\core\scene.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\interfaces\noop.hpp">
+      <Filter>Header Files\avatar\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\interfaces\winvk.hpp">
+      <Filter>Header Files\avatar\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\platforms\winrt.hpp">
+      <Filter>Header Files\avatar\platforms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

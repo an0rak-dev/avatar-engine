@@ -1,4 +1,4 @@
-#include <khrvulkan.hpp>
+#include <avatar/renderers/khrvulkan.hpp>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -72,10 +72,14 @@ int vulkan_reset(av_vulkan& vulkan) {
 	return 0;
 }
 
-void vulkan_clear(av_vulkan& vulkan, float red, float green, float blue, float alpha) {
+void vulkan_clear(av_vulkan& vulkan, double red, double green, double blue, double alpha) {
 	// TODO
 }
 
 void vulkan_present(av_vulkan& vulkan) {
 	// TODO
+}
+
+VkInstance vulkan_get_instance(av_vulkan& vulkan) {
+	return vulkan.specifics->instance;
 }

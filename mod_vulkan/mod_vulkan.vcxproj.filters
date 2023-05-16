@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\vulkan">
-      <UniqueIdentifier>{a1b54918-dc76-4172-8ec6-db9fb89d3eeb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\lib">
       <UniqueIdentifier>{9d76ae4a-fda8-42ff-a986-2395cb677188}</UniqueIdentifier>
     </Filter>
@@ -46,15 +43,6 @@
     </Library>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\vulkan\vulkan.h">
-      <Filter>Header Files\vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\vulkan\vk_platform.h">
-      <Filter>Header Files\vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\vulkan\vulkan_core.h">
-      <Filter>Header Files\vulkan</Filter>
-    </ClInclude>
     <ClInclude Include="includes\vk_video\vulkan_video_codec_h264std.h">
       <Filter>Header Files\vk_video</Filter>
     </ClInclude>

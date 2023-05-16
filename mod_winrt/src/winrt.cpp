@@ -1,4 +1,4 @@
-#include <winrt.hpp>
+#include <avatar/platforms/winrt.hpp>
 #include <stdlib.h>
 
 #include <Windows.h>

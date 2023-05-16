@@ -1,4 +1,4 @@
-#include <interfaces/noop.hpp>
+#include <avatar/interfaces/noop.hpp>
 #include <stdio.h>
 
 int noop_allocate(av_noop_interface* interface) {

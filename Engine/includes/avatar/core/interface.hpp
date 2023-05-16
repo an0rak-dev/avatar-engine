@@ -11,9 +11,9 @@ bellow.
 */
 
 #if defined(PLATFORM_WINRT) && defined(RENDERER_VULKAN)
-#include <interfaces/winvk.hpp>
+#include <avatar/interfaces/winvk.hpp>
 #else 
-#include <interfaces/noop.hpp>
+#include <avatar/interfaces/noop.hpp>
 #endif
 
 #endif

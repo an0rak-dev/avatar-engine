@@ -1,6 +1,6 @@
 #include <mod_vulkan/instance.hpp>
 
-#include <khrvulkan.hpp>
+#include <avatar/renderers/khrvulkan.hpp>
 #include <mod_vulkan/extensions.hpp>
 
 int modvulkan_instance_init(struct vulkan_specifics& specifics, enum av_supported_surface surface_kind) {

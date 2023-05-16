@@ -1,4 +1,4 @@
-#include <interfaces/winvk.hpp>
+#include <avatar/interfaces/winvk.hpp>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -36,8 +36,16 @@ int winvk_init(av_winvk_interface& itf, const wchar_t* app_name) {
 
 	HINSTANCE app_instance = winrt_get_instance(itf.platform);
 	HWND window_handle = winrt_get_handle(itf.platform);
-	// TODO : Create VkKhrSurface from vulkan directly here -- haha, no vulkan headers here.
-	vulkan_attach_surface(itf.renderer, app_instance, window_handle);
+	VkInstance instance = vulkan_get_instance(itf.renderer);
+
+	struct VkWin32SurfaceCreateInfoKHR create_info = { VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR };
+	create_info.hinstance = app_instance;
+	create_info.hwnd = window_handle;
+	VkSurfaceKHR out_surface;
+	if (VK_SUCCESS != vkCreateWin32SurfaceKHR(instance, &create_info, NULL, &out_surface)) {
+		return 3;
+	}
+
 
 	return 0;
 }
