@@ -3,18 +3,12 @@
 #include <stdio.h>
 #include <vulkan/vulkan.h>
 
+#include <mod_vulkan/data.hpp>
 #include <mod_vulkan/extensions.hpp> 
 
 #define MAX_DEVICES_COUNT 16
 #define MAX_QUEUE_FAMILIES 32
 #define MODULE_VERSION 1
-
-struct vulkan_specifics {
-	VkInstance instance;
-	VkDevice device;
-	VkCommandPool command_pool;
-	VkCommandBuffer command_buffer;
-};
 
 int vulkan_allocate(av_vulkan* out_vulkan) {
 	struct vulkan_specifics* allocated_specifics = (struct vulkan_specifics*)malloc(sizeof(struct vulkan_specifics));

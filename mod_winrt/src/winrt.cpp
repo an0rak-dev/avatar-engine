@@ -30,7 +30,7 @@ void winrt_destroy(av_winrt_platform* winrt) {
 	}
 }
 
-int winrt_initalize(av_winrt_platform& winrt, const wchar_t* app_name, unsigned int width, unsigned int height) {
+int winrt_initialize(av_winrt_platform& winrt, const wchar_t* app_name, unsigned int width, unsigned int height) {
 	HRESULT result = S_OK;
 	HINSTANCE current_process = GetModuleHandle(NULL);
 	if (0 != register_window_class(current_process)) {
@@ -69,4 +69,12 @@ void winrt_wait_next_event(av_winrt_platform& winrt) {
 	TranslateMessage(&msg);
 	DispatchMessageW(&msg);
 	winrt.last_event = WINRT_NONE;
+}
+
+HWND winrt_get_handle(av_winrt_platform& winrt) {
+	return winrt.specifics->handle;
+}
+
+HINSTANCE winrt_get_instance(av_winrt_platform& winrt) {
+	return GetModuleHandle(NULL);
 }
