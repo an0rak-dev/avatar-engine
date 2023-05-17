@@ -43,7 +43,8 @@ int winvk_init(av_winvk_interface& itf, const wchar_t* app_name) {
 	create_info.hinstance = app_instance;
 	create_info.hwnd = window_handle;
 	VkSurfaceKHR win32_surface;
-	if (VK_SUCCESS != vkCreateWin32SurfaceKHR(instance, &create_info, NULL, &win32_surface)) {
+	VkResult result = vkCreateWin32SurfaceKHR(instance, &create_info, NULL, &win32_surface);
+	if (VK_SUCCESS != result) {
 		return 3;
 	}
 	if (VK_SUCCESS != vulkan_attach_surface(itf.renderer, win32_surface)) {

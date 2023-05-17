@@ -30,12 +30,6 @@
     <ClCompile Include="src\extensions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\instance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\device.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\vulkan-1.lib">
@@ -68,12 +62,6 @@
       <Filter>Header Files\mod_vulkan</Filter>
     </ClInclude>
     <ClInclude Include="includes\mod_vulkan\data.hpp">
-      <Filter>Header Files\mod_vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\mod_vulkan\instance.hpp">
-      <Filter>Header Files\mod_vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\mod_vulkan\device.hpp">
       <Filter>Header Files\mod_vulkan</Filter>
     </ClInclude>
   </ItemGroup>

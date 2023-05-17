@@ -6,7 +6,7 @@
 struct vulkan_specifics {
 	VkInstance instance;
 	VkDevice device;
-	uint32_t queue_family_index;
+	uint32_t graphic_queue_family_index;
 	VkCommandPool command_pool;
 	VkCommandBuffer command_buffer;
 	VkSurfaceKHR surface;

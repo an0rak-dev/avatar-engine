@@ -143,9 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\device.cpp" />
     <ClCompile Include="src\extensions.cpp" />
-    <ClCompile Include="src\instance.cpp" />
     <ClCompile Include="src\khrvulkan.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,9 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\mod_vulkan\data.hpp" />
-    <ClInclude Include="includes\mod_vulkan\device.hpp" />
     <ClInclude Include="includes\mod_vulkan\extensions.hpp" />
-    <ClInclude Include="includes\mod_vulkan\instance.hpp" />
     <ClInclude Include="includes\vk_video\vulkan_video_codecs_common.h" />
     <ClInclude Include="includes\vk_video\vulkan_video_codec_h264std.h" />
     <ClInclude Include="includes\vk_video\vulkan_video_codec_h264std_decode.h" />
