@@ -18,6 +18,7 @@ void winvk_destroy(av_winvk_interface* itf) {
 	if (NULL == itf) {
 		return;
 	}
+	vulkan_destroy_surface(itf->renderer);
 	vulkan_destroy(&itf->renderer);
 	winrt_destroy(&itf->platform);
 }
@@ -41,9 +42,12 @@ int winvk_init(av_winvk_interface& itf, const wchar_t* app_name) {
 	struct VkWin32SurfaceCreateInfoKHR create_info = { VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR };
 	create_info.hinstance = app_instance;
 	create_info.hwnd = window_handle;
-	VkSurfaceKHR out_surface;
-	if (VK_SUCCESS != vkCreateWin32SurfaceKHR(instance, &create_info, NULL, &out_surface)) {
+	VkSurfaceKHR win32_surface;
+	if (VK_SUCCESS != vkCreateWin32SurfaceKHR(instance, &create_info, NULL, &win32_surface)) {
 		return 3;
+	}
+	if (VK_SUCCESS != vulkan_attach_surface(itf.renderer, win32_surface)) {
+		return 4;
 	}
 
 

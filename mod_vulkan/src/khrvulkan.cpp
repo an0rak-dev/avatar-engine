@@ -33,6 +33,10 @@ void vulkan_destroy(av_vulkan* inout_vulkan) {
 	}
 }
 
+void vulkan_destroy_surface(av_vulkan& inout_vulkan) {
+	vkDestroySurfaceKHR(inout_vulkan.specifics->instance, inout_vulkan.specifics->surface, NULL);
+}
+
 int vulkan_initialize(av_vulkan& vulkan, enum av_supported_surface surface_kind) {
 	if (0 != modvulkan_instance_init(*vulkan.specifics, surface_kind)) {
 		return 1;
@@ -60,6 +64,11 @@ int vulkan_initialize(av_vulkan& vulkan, enum av_supported_surface surface_kind)
 		return 8;
 	}
 
+	return 0;
+}
+
+int vulkan_attach_surface(av_vulkan& vulkan, VkSurfaceKHR& surface) {
+	vulkan.specifics->surface = surface;
 	return 0;
 }
 

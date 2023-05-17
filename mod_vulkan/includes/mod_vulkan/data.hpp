@@ -9,6 +9,7 @@ struct vulkan_specifics {
 	uint32_t queue_family_index;
 	VkCommandPool command_pool;
 	VkCommandBuffer command_buffer;
+	VkSurfaceKHR surface;
 };
 
 #define MODULE_VERSION 1
