@@ -6,13 +6,14 @@
 
 #include <mod_vulkan/data.hpp>
 #include <mod_vulkan/extensions.hpp>
+#include <mod_vulkan/queues.hpp>
 
 #define MAX_DEVICES_COUNT 16
 #define MAX_QUEUE_FAMILIES 32
 
 int create_instance(struct vulkan_specifics* specifics, enum av_supported_surface surface_kind);
 int create_device(struct vulkan_specifics* specifics);
-bool is_device_supported(VkPhysicalDevice& physical_device, uint32_t* graphic_queue_family_idx);
+bool is_device_supported(VkPhysicalDevice& physical_device, VkSurfaceKHR& surface, struct queue_families& families);
 
 int vulkan_allocate(av_vulkan* out_vulkan) {
 	struct vulkan_specifics* allocated_specifics = (struct vulkan_specifics*)malloc(sizeof(struct vulkan_specifics));
@@ -23,6 +24,7 @@ int vulkan_allocate(av_vulkan* out_vulkan) {
 	allocated_specifics->device         = VK_NULL_HANDLE;
 	allocated_specifics->command_pool   = VK_NULL_HANDLE;
 	allocated_specifics->command_buffer = VK_NULL_HANDLE;
+	queues_reset(allocated_specifics->queue_families);
 	out_vulkan->specifics = allocated_specifics;
 	return 0;
 }
@@ -46,31 +48,30 @@ int vulkan_initialize(av_vulkan& vulkan, enum av_supported_surface surface_kind)
 	if (0 != create_instance(vulkan.specifics, surface_kind)) {
 		return 1;
 	}
+	return 0;
+}
+
+int vulkan_attach_surface(av_vulkan& vulkan, VkSurfaceKHR& surface) {
+	vulkan.specifics->surface = surface;
 
 	if (0 != create_device(vulkan.specifics)) {
-		return 2;
+		return 1;
 	}
 
 	// Command Buffer
 	VkCommandBufferAllocateInfo command_buffer_allocate_info = { VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO };
 	VkCommandPoolCreateInfo command_pool_create_info = { VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO };
 	command_pool_create_info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
-	command_pool_create_info.queueFamilyIndex = vulkan.specifics->graphic_queue_family_index;
+	command_pool_create_info.queueFamilyIndex = vulkan.specifics->queue_families.graphic_index;
 	if (VK_SUCCESS != vkCreateCommandPool(vulkan.specifics->device, &command_pool_create_info, NULL, &vulkan.specifics->command_pool)) {
-		return 7;
+		return 2;
 	}
 	command_buffer_allocate_info.commandPool = vulkan.specifics->command_pool;
 	command_buffer_allocate_info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
 	command_buffer_allocate_info.commandBufferCount = 1;
 	if (VK_SUCCESS != vkAllocateCommandBuffers(vulkan.specifics->device, &command_buffer_allocate_info, &vulkan.specifics->command_buffer)) {
-		return 8;
+		return 3;
 	}
-
-	return 0;
-}
-
-int vulkan_attach_surface(av_vulkan& vulkan, VkSurfaceKHR& surface) {
-	vulkan.specifics->surface = surface;
 	return 0;
 }
 
@@ -138,7 +139,8 @@ int create_device(struct vulkan_specifics* specifics) {
 	float queue_priority = 1.0f;
 	VkPhysicalDevice devices[MAX_DEVICES_COUNT];
 	VkDeviceCreateInfo device_create_info = { VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO };
-	VkDeviceQueueCreateInfo device_queue_create_info = { VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO };
+	int total_queues_family = MAX_QUEUES_PER_DEVICE;
+	VkDeviceQueueCreateInfo device_queues_create_info[MAX_QUEUES_PER_DEVICE] = {};
 	VkPhysicalDeviceFeatures device_features = {};
 	if (VK_SUCCESS != vkEnumeratePhysicalDevices(specifics->instance, &devices_count, NULL)) {
 		return 3;
@@ -147,21 +149,22 @@ int create_device(struct vulkan_specifics* specifics) {
 		return 4;
 	}
 	for (unsigned int i = 0; i < devices_count; i++) {
-		if (is_device_supported(devices[i], &specifics->graphic_queue_family_index)) {
+		if (is_device_supported(devices[i], specifics->surface, specifics->queue_families)) {
 			physical_device = devices[i];
 			break;
 		}
+		// No match, we reset the queue_families indexes.
+		queues_reset(specifics->queue_families);
 	}
 	if (VK_NULL_HANDLE == physical_device) {
 		return 5;
 	}
-	device_queue_create_info.queueCount = 1;
-	device_queue_create_info.pQueuePriorities = &queue_priority;
-	device_queue_create_info.queueFamilyIndex = specifics->graphic_queue_family_index;
+
+	queues_prepare_info(specifics->queue_families, device_queues_create_info, &total_queues_family);
 
 	//const char* enabled_extensions = { VK_KHR_SURFACE_EXTENSION_NAME /*VK_KHR_SWAPCHAIN_EXTENSION_NAME */ };
-	device_create_info.pQueueCreateInfos = &device_queue_create_info;
-	device_create_info.queueCreateInfoCount = 1;
+	device_create_info.pQueueCreateInfos = device_queues_create_info;
+	device_create_info.queueCreateInfoCount = total_queues_family;
 	device_create_info.pEnabledFeatures = &device_features;
 //	device_create_info.enabledExtensionCount = 1;
 //	device_create_info.ppEnabledExtensionNames = &enabled_extensions;
@@ -172,7 +175,7 @@ int create_device(struct vulkan_specifics* specifics) {
 	return 0;
 }
 
-bool is_device_supported(VkPhysicalDevice& physical_device, uint32_t* graphic_queue_family_idx) {
+bool is_device_supported(VkPhysicalDevice& physical_device, VkSurfaceKHR& surface, struct queue_families& families) {
 	VkPhysicalDeviceProperties properties = {};
 	vkGetPhysicalDeviceProperties(physical_device, &properties);
 	// Condition 1 : the device should support the Targeted vulkan version
@@ -185,15 +188,28 @@ bool is_device_supported(VkPhysicalDevice& physical_device, uint32_t* graphic_qu
 	vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &queue_families_count, queue_families);
 	for (unsigned int j = 0; j < queue_families_count; j++) {
 		// Condition 2 : the device should have a queue family which supports the Graphic commands
-		if (!(queue_families[j].queueFlags & VK_QUEUE_GRAPHICS_BIT)) {
-			continue;
+		if (queue_families[j].queueFlags & VK_QUEUE_GRAPHICS_BIT) {
+			families.graphic_index = j;
 		}
 
+		// Condition 3 : the device should have a queue family which supports the Present commands
+		VkBool32 surface_supported = false;
+		VkResult result = vkGetPhysicalDeviceSurfaceSupportKHR(physical_device, j, surface, &surface_supported);
+		if (surface_supported) {
+			families.present_index = j;
+		}
+
+		if (queues_are_complete(families)) {
+			break;
+		}
+	}
+
+	if (queues_are_complete(families)) {
 #ifdef _DEBUG
 		printf("Using %s graphic card\n", properties.deviceName);
 #endif
-		*graphic_queue_family_idx = j;
 		return true;
 	}
+
 	return false;
 }

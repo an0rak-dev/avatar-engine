@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="src\extensions.cpp" />
     <ClCompile Include="src\khrvulkan.cpp" />
+    <ClCompile Include="src\queues.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\vulkan-1.lib" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="includes\mod_vulkan\data.hpp" />
     <ClInclude Include="includes\mod_vulkan\extensions.hpp" />
+    <ClInclude Include="includes\mod_vulkan\queues.hpp" />
     <ClInclude Include="includes\vk_video\vulkan_video_codecs_common.h" />
     <ClInclude Include="includes\vk_video\vulkan_video_codec_h264std.h" />
     <ClInclude Include="includes\vk_video\vulkan_video_codec_h264std_decode.h" />

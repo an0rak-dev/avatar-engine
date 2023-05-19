@@ -5,6 +5,7 @@
 #include <string.h>
                            
 #define KHR_WIN32_SURFACE_EXT "VK_KHR_win32_surface"
+#define KHR_SURFACE_EXT "VK_KHR_surface"
 
 unsigned int available_instances_extensions_count = 0;
 VkExtensionProperties available_instances_extensions[MAX_AVAILABLE_EXTENSIONS] = {};
@@ -27,6 +28,7 @@ int modvulkan_extensions_enable_win32(const char** extensions, int* extensions_c
 	}
 	int idx = *extensions_count;
 	extensions[idx++] = KHR_WIN32_SURFACE_EXT;
+	extensions[idx++] = KHR_SURFACE_EXT;
 	*extensions_count = idx;
 	return 0;
 }
