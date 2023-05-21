@@ -132,6 +132,8 @@ int create_device(struct vulkan_specifics* specifics) {
 	int total_queues_family = MAX_QUEUES_PER_DEVICE;
 	VkDeviceQueueCreateInfo device_queues_create_info[MAX_QUEUES_PER_DEVICE] = {};
 	VkPhysicalDeviceFeatures device_features = {};
+	const char* device_extensions[MAX_ENABLED_EXTENSIONS] = { NULL };
+	unsigned int device_extensions_count = 0;
 	if (VK_SUCCESS != vkEnumeratePhysicalDevices(specifics->instance, &devices_count, NULL)) {
 		return 3;
 	}
@@ -152,12 +154,14 @@ int create_device(struct vulkan_specifics* specifics) {
 
 	queues_prepare_info(specifics->queue_families, device_queues_create_info, &total_queues_family);
 
-	//const char* enabled_extensions = { VK_KHR_SURFACE_EXTENSION_NAME /*VK_KHR_SWAPCHAIN_EXTENSION_NAME */ };
+	if (0 != modvulkan_extensions_enable_device(device_extensions, &device_extensions_count)) {
+		return 6;
+	}
 	device_create_info.pQueueCreateInfos = device_queues_create_info;
 	device_create_info.queueCreateInfoCount = total_queues_family;
 	device_create_info.pEnabledFeatures = &device_features;
-//	device_create_info.enabledExtensionCount = 1;
-//	device_create_info.ppEnabledExtensionNames = &enabled_extensions;
+	device_create_info.enabledExtensionCount = device_extensions_count;
+	device_create_info.ppEnabledExtensionNames = device_extensions;
 	VkResult result = vkCreateDevice(physical_device, &device_create_info, nullptr, &specifics->device);
 	if (VK_SUCCESS != result) {
 		return 6;
@@ -189,17 +193,21 @@ bool is_device_supported(VkPhysicalDevice& physical_device, VkSurfaceKHR& surfac
 	if (properties.apiVersion < TARGETED_VULKAN_VERSION) {
 		return false;
 	}
+	// Condition 2 : the device should support Swapchains.
+	if (!modvulkan_extensions_validate_device(physical_device)) {
+		return false;
+	}
 	unsigned int queue_families_count = 0;
 	VkQueueFamilyProperties queue_families[MAX_QUEUE_FAMILIES] = {};
 	vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &queue_families_count, NULL);
 	vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &queue_families_count, queue_families);
 	for (unsigned int j = 0; j < queue_families_count; j++) {
-		// Condition 2 : the device should have a queue family which supports the Graphic commands
+		// Condition 3 : the device should have a queue family which supports the Graphic commands
 		if (queue_families[j].queueFlags & VK_QUEUE_GRAPHICS_BIT) {
 			families.graphic_index = j;
 		}
 
-		// Condition 3 : the device should have a queue family which supports the Present commands
+		// Condition 4 : the device should have a queue family which supports the Present commands
 		VkBool32 surface_supported = false;
 		VkResult result = vkGetPhysicalDeviceSurfaceSupportKHR(physical_device, j, surface, &surface_supported);
 		if (surface_supported) {

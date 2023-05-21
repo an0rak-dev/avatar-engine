@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
                            
+#define MAX_AVAILABLE_EXTENSIONS_PER_DEVICE 256
 #define KHR_WIN32_SURFACE_EXT "VK_KHR_win32_surface"
 #define KHR_SURFACE_EXT "VK_KHR_surface"
 
@@ -48,4 +49,28 @@ bool modvulkan_extensions_validate(const char** extensions, int extensions_count
 		}
 	}
 	return true;
+}
+
+bool modvulkan_extensions_validate_device(VkPhysicalDevice& device) {
+	uint32_t available_extensions = 0;
+	VkExtensionProperties device_extensions[MAX_AVAILABLE_EXTENSIONS_PER_DEVICE];
+	VkResult result = VK_SUCCESS;
+	result = vkEnumerateDeviceExtensionProperties(device, NULL, &available_extensions, NULL);
+	result = vkEnumerateDeviceExtensionProperties(device, NULL, &available_extensions, device_extensions);
+	for (unsigned int i = 0; i < available_extensions; i++) {
+		if (0 == strncmp(device_extensions[i].extensionName, VK_KHR_SWAPCHAIN_EXTENSION_NAME, MAX_EXTENSION_LENGTH)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+int modvulkan_extensions_enable_device(const char** extensions, unsigned int* extensions_count) {
+	if (NULL == extensions || NULL == extensions_count || MAX_ENABLED_EXTENSIONS < *extensions_count) {
+		return 1;
+	}
+	int idx = *extensions_count;
+	extensions[idx++] = VK_KHR_SWAPCHAIN_EXTENSION_NAME;
+	*extensions_count = idx;
+	return 0;
 }
