@@ -13,6 +13,7 @@
 
 int create_instance(struct vulkan_specifics* specifics, enum av_supported_surface surface_kind);
 int create_device(struct vulkan_specifics* specifics);
+int create_command_buffer(struct vulkan_specifics* specifics);
 bool is_device_supported(VkPhysicalDevice& physical_device, VkSurfaceKHR& surface, struct queue_families& families);
 
 int vulkan_allocate(av_vulkan* out_vulkan) {
@@ -58,19 +59,8 @@ int vulkan_attach_surface(av_vulkan& vulkan, VkSurfaceKHR& surface) {
 		return 1;
 	}
 
-	// Command Buffer
-	VkCommandBufferAllocateInfo command_buffer_allocate_info = { VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO };
-	VkCommandPoolCreateInfo command_pool_create_info = { VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO };
-	command_pool_create_info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
-	command_pool_create_info.queueFamilyIndex = vulkan.specifics->queue_families.graphic_index;
-	if (VK_SUCCESS != vkCreateCommandPool(vulkan.specifics->device, &command_pool_create_info, NULL, &vulkan.specifics->command_pool)) {
+	if (0 != create_command_buffer(vulkan.specifics)) {
 		return 2;
-	}
-	command_buffer_allocate_info.commandPool = vulkan.specifics->command_pool;
-	command_buffer_allocate_info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-	command_buffer_allocate_info.commandBufferCount = 1;
-	if (VK_SUCCESS != vkAllocateCommandBuffers(vulkan.specifics->device, &command_buffer_allocate_info, &vulkan.specifics->command_buffer)) {
-		return 3;
 	}
 	return 0;
 }
@@ -171,6 +161,23 @@ int create_device(struct vulkan_specifics* specifics) {
 	VkResult result = vkCreateDevice(physical_device, &device_create_info, nullptr, &specifics->device);
 	if (VK_SUCCESS != result) {
 		return 6;
+	}
+	return 0;
+}
+
+int create_command_buffer(struct vulkan_specifics* specifics) {
+	VkCommandBufferAllocateInfo command_buffer_allocate_info = { VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO };
+	VkCommandPoolCreateInfo command_pool_create_info = { VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO };
+	command_pool_create_info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+	command_pool_create_info.queueFamilyIndex = specifics->queue_families.graphic_index;
+	if (VK_SUCCESS != vkCreateCommandPool(specifics->device, &command_pool_create_info, NULL, &specifics->command_pool)) {
+		return 1;
+	}
+	command_buffer_allocate_info.commandPool = specifics->command_pool;
+	command_buffer_allocate_info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+	command_buffer_allocate_info.commandBufferCount = 1;
+	if (VK_SUCCESS != vkAllocateCommandBuffers(specifics->device, &command_buffer_allocate_info, &specifics->command_buffer)) {
+		return 2;
 	}
 	return 0;
 }
