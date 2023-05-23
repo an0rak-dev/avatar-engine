@@ -10,10 +10,10 @@ Then, include your specific interface header between a unique set of defines
 bellow.
 */
 
-#if defined(PLATFORM_WINRT) && defined(RENDERER_VULKAN)
-#include <interfaces/winvk.hpp>
-#else 
-#include <interfaces/noop.hpp>
-#endif
+//#if defined(PLATFORM_WINRT) && defined(RENDERER_VULKAN)
+//#include <interfaces/winvk.hpp>
+//#else 
+#include <avatar/interfaces/noop.hpp>
+//#endif
 
 #endif

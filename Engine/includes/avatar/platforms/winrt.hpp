@@ -8,7 +8,7 @@ enum winrt_events {
 	NONE
 };
 
-typedef struct wintr_platform {
+typedef struct winrt_platform {
 	enum winrt_events last_event;
 	struct winrt_specifics* specifics;
 } winrt_platform;

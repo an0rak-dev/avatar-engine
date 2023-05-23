@@ -131,14 +131,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="includes\core\interface.hpp" />
-    <ClInclude Include="includes\interfaces\noop.hpp" />
-    <ClInclude Include="includes\interfaces\winvk.hpp" />
-    <ClInclude Include="includes\platforms\winrt.hpp" />
+    <ClCompile Include="src\interfaces\noop.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\interfaces\noop.cpp" />
-    <ClCompile Include="src\interfaces\winvk.cpp" />
+    <ClInclude Include="includes\avatar\core\color.hpp" />
+    <ClInclude Include="includes\avatar\core\interface.hpp" />
+    <ClInclude Include="includes\avatar\core\level.hpp" />
+    <ClInclude Include="includes\avatar\core\scene.hpp" />
+    <ClInclude Include="includes\avatar\interfaces\noop.hpp" />
+    <ClInclude Include="includes\avatar\platforms\winrt.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

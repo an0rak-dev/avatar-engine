@@ -13,39 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\core">
-      <UniqueIdentifier>{f4d3b696-98fa-4eaf-a16e-16e9e20084c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\interfaces">
-      <UniqueIdentifier>{dee3ee95-598a-4e77-969e-78aa0e15ac06}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\interfaces">
       <UniqueIdentifier>{30ce4cf9-49d0-43af-ae74-de1af287a72e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\platforms">
+    <Filter Include="Header Files\avatar">
+      <UniqueIdentifier>{91e1f9ef-11f6-4cb8-829b-6fcd6d7ac8d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\avatar\core">
+      <UniqueIdentifier>{f4d3b696-98fa-4eaf-a16e-16e9e20084c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\avatar\interfaces">
+      <UniqueIdentifier>{dee3ee95-598a-4e77-969e-78aa0e15ac06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\avatar\platforms">
       <UniqueIdentifier>{3bb5cc62-41b5-43c4-9a72-5e6f13de2ac2}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="includes\core\interface.hpp">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\interfaces\noop.hpp">
-      <Filter>Header Files\interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\interfaces\winvk.hpp">
-      <Filter>Header Files\interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\platforms\winrt.hpp">
-      <Filter>Header Files\platforms</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\interfaces\noop.cpp">
       <Filter>Source Files\interfaces</Filter>
     </ClCompile>
-    <ClCompile Include="src\interfaces\winvk.cpp">
-      <Filter>Source Files\interfaces</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\avatar\core\interface.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\interfaces\noop.hpp">
+      <Filter>Header Files\avatar\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\platforms\winrt.hpp">
+      <Filter>Header Files\avatar\platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\core\level.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\core\scene.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\core\color.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

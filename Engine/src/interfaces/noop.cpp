@@ -1,4 +1,4 @@
-#include <interfaces/noop.hpp>
+#include <avatar/interfaces/noop.hpp>
 #include <stdio.h>
 
 int noop_allocate(noop_interface* interface) {
@@ -29,4 +29,8 @@ bool noop_is_running(noop_interface& interface) {
 void noop_poll_event(noop_interface& interface) {
 	printf("Polling new event\n");
 	--interface.remaining_events;
+}
+
+void noop_render(av_noop_interface& interface, av_scene& scene) {
+	printf("Rendering scene\n");
 }
