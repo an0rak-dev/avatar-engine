@@ -4,8 +4,8 @@
 struct winrt_specifics;
 
 enum winrt_events {
-	QUIT,
-	NONE
+	WINRT_QUIT,
+	WINRT_NONE
 };
 
 typedef struct winrt_platform {

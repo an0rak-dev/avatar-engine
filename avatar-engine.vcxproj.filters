@@ -13,29 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\interfaces">
-      <UniqueIdentifier>{30ce4cf9-49d0-43af-ae74-de1af287a72e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\avatar">
-      <UniqueIdentifier>{91e1f9ef-11f6-4cb8-829b-6fcd6d7ac8d3}</UniqueIdentifier>
+      <UniqueIdentifier>{f3e092a9-6a06-4ff3-81b4-563e284aa0b4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\avatar\core">
-      <UniqueIdentifier>{f4d3b696-98fa-4eaf-a16e-16e9e20084c3}</UniqueIdentifier>
+      <UniqueIdentifier>{5e574450-ad04-45c2-8855-db9a1e3937d8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\avatar\interfaces">
-      <UniqueIdentifier>{dee3ee95-598a-4e77-969e-78aa0e15ac06}</UniqueIdentifier>
+      <UniqueIdentifier>{28d2a19b-5454-41fa-96ea-49e89ae751b8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\avatar\platforms">
-      <UniqueIdentifier>{3bb5cc62-41b5-43c4-9a72-5e6f13de2ac2}</UniqueIdentifier>
+      <UniqueIdentifier>{21a88e1e-b27c-4bba-bc16-7d28a4120486}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\interfaces">
+      <UniqueIdentifier>{de1b92bb-d67a-4a26-a463-afb3e5a815cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\interfaces\noop.cpp">
-      <Filter>Source Files\interfaces</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="includes\avatar\core\color.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
     <ClInclude Include="includes\avatar\core\interface.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\core\level.hpp">
+      <Filter>Header Files\avatar\core</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\core\scene.hpp">
       <Filter>Header Files\avatar\core</Filter>
     </ClInclude>
     <ClInclude Include="includes\avatar\interfaces\noop.hpp">
@@ -44,14 +48,10 @@
     <ClInclude Include="includes\avatar\platforms\winrt.hpp">
       <Filter>Header Files\avatar\platforms</Filter>
     </ClInclude>
-    <ClInclude Include="includes\avatar\core\level.hpp">
-      <Filter>Header Files\avatar\core</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\avatar\core\scene.hpp">
-      <Filter>Header Files\avatar\core</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\avatar\core\color.hpp">
-      <Filter>Header Files\avatar\core</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\interfaces\noop.cpp">
+      <Filter>Source Files\interfaces</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
