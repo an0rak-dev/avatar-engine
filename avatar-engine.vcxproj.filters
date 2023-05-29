@@ -28,6 +28,9 @@
     <Filter Include="Source Files\interfaces">
       <UniqueIdentifier>{de1b92bb-d67a-4a26-a463-afb3e5a815cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\avatar\renderers">
+      <UniqueIdentifier>{309dfb4d-05af-42d0-8aac-14e74083c65a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\avatar\core\color.hpp">
@@ -48,9 +51,18 @@
     <ClInclude Include="includes\avatar\platforms\winrt.hpp">
       <Filter>Header Files\avatar\platforms</Filter>
     </ClInclude>
+    <ClInclude Include="includes\avatar\renderers\directx12.hpp">
+      <Filter>Header Files\avatar\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\avatar\interfaces\windx12.hpp">
+      <Filter>Header Files\avatar\interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\interfaces\noop.cpp">
+      <Filter>Source Files\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\interfaces\windx12.cpp">
       <Filter>Source Files\interfaces</Filter>
     </ClCompile>
   </ItemGroup>
