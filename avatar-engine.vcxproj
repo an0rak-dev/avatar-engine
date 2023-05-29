@@ -18,6 +18,20 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\avatar\core\color.hpp" />
+    <ClInclude Include="includes\avatar\core\interface.hpp" />
+    <ClInclude Include="includes\avatar\core\level.hpp" />
+    <ClInclude Include="includes\avatar\core\scene.hpp" />
+    <ClInclude Include="includes\avatar\interfaces\noop.hpp" />
+    <ClInclude Include="includes\avatar\interfaces\windx12.hpp" />
+    <ClInclude Include="includes\avatar\platforms\winrt.hpp" />
+    <ClInclude Include="includes\avatar\renderers\directx12.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\interfaces\noop.cpp" />
+    <ClCompile Include="src\interfaces\windx12.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -130,17 +144,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="includes\avatar\core\color.hpp" />
-    <ClInclude Include="includes\avatar\core\interface.hpp" />
-    <ClInclude Include="includes\avatar\core\level.hpp" />
-    <ClInclude Include="includes\avatar\core\scene.hpp" />
-    <ClInclude Include="includes\avatar\interfaces\noop.hpp" />
-    <ClInclude Include="includes\avatar\platforms\winrt.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\interfaces\noop.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
