@@ -1,0 +1,65 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "[Engine - Core] Build",
+            "dependsOn": "[Engine - Core] Compile",
+            "command": "lib.exe",
+            "args": [
+                "/nologo",
+                "/out:${workspaceFolder}\\Bin\\avatar-engine.lib",
+                "*.obj"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}\\Bin"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Build the Avatar Engine core static library."
+        },
+        {
+            "type": "cppbuild",
+            "label": "[Engine - Core] Compile",
+            "dependsOn": "[Engine - Core] Prepare",
+            "command": "cl.exe",
+            "args": [
+                "/Zi",
+                "/EHsc",
+                "/FC",
+                "/nologo",
+                "/c",
+                "/DUNICODE",
+                "/I${workspaceFolder}\\includes",
+                "${workspaceFolder}\\src\\*.cpp"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}\\Bin"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Compile all the sources of the Avatar Engine core module."
+        },
+        {
+          "type":"shell",
+          "label": "[Engine - Core] Prepare",
+          "windows":{
+            "command": "cmd.exe",
+            "args": [
+                "/C",
+                "${workspaceFolder}\\.vscode\\prepare.bat"
+            ]
+          },
+        }
+    ],
+    "version": "2.0.0"
+}

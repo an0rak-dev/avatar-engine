@@ -29,8 +29,8 @@
     <ClInclude Include="includes\avatar\renderers\directx12.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\interfaces\noop.cpp" />
-    <ClCompile Include="src\interfaces\windx12.cpp" />
+    <ClCompile Include="src\interfaces_noop.cpp" />
+    <ClCompile Include="src\interfaces_windx12.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
