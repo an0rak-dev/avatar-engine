@@ -17,7 +17,14 @@ jobs:
       - name: Run Clang-format
         shell: cmd
         run: |
-          "%VCINSTALL%\Tools\Llvm\bin\clang-format.exe" --Werror --dry-run --ferror-limit=0 --style=file:misc\.clang-format includes\**\*.hpp src\*.cpp
+          "%VCINSTALL%\Tools\Llvm\bin\clang-format.exe" ^
+            --Werror --dry-run --ferror-limit=0 ^
+            --style=file:misc\.clang-format ^
+            includes\avatar\core\*.hpp ^
+            includes\avatar\interfaces\*.hpp ^
+            includes\avatar\platforms\*.hpp ^
+            includes\avatar\renderers\*.hpp ^
+            src\*.cpp
   build-sources:
     name: Build the source code
     runs-on: windows-latest
