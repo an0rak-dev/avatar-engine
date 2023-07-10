@@ -2,10 +2,10 @@
 #define AVATAR_CORE_COLOR
 
 typedef struct color {
-	double red;
-	double green;
-	double blue;
-	double alpha;
+		double red;
+		double green;
+		double blue;
+		double alpha;
 } av_color;
 
 #endif

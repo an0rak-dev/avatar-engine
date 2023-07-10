@@ -4,7 +4,7 @@
 #include <avatar/core/scene.hpp>
 
 typedef struct level {
-	av_scene scene;
+		av_scene scene;
 } av_level;
 
 #endif
