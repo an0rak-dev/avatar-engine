@@ -18,7 +18,7 @@ typedef struct winrt_platform {
 extern int  winrt_allocate(winrt_platform *winrt);
 extern void winrt_destroy(winrt_platform *winrt);
 
-extern int  winrt_initalize(winrt_platform &winrt, const wchar_t *app_name, int width, int height);
+extern int  winrt_initialize(winrt_platform &winrt, const wchar_t *app_name, int width, int height);
 extern void winrt_show(winrt_platform &winrt);
 extern void winrt_wait_next_event(winrt_platform &winrt);
 

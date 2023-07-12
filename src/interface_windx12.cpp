@@ -1,20 +1,21 @@
 #include <avatar/interfaces/windx12.hpp>
+#include <avatar/core/errors.hpp>
 #include <stdlib.h>
 
 int windx12_allocate(av_windx12_interface *itf) {
 	if (NULL == itf) {
-		return 1;
+		return E_AV_INVALID_ARGUMENT;
 	}
 
 	if (0 != winrt_allocate(&itf->platform)) {
-		return 2;
+		return E_AV_PLATFORM_ERROR;
 	}
 
 	if (0 != dx12_allocate(&itf->renderer)) {
-		return 3;
+		return E_AV_RENDERER_ERROR;
 	}
 
-	return 0;
+	return AV_OK;
 }
 
 void windx12_destroy(av_windx12_interface *itf) {
@@ -27,16 +28,16 @@ void windx12_destroy(av_windx12_interface *itf) {
 }
 
 int windx12_init(av_windx12_interface &itf, const wchar_t *app_name) {
-	if (0 != winrt_initalize(itf.platform, app_name, 1080, 720)) {
-		return 1;
+	if (0 != winrt_initialize(itf.platform, app_name, 1080, 720)) {
+		return E_AV_PLATFORM_ERROR;
 	}
 
 	HWND handle = winrt_get_window_handle(itf.platform);
 	if (0 != dx12_initialize(itf.renderer, handle)) {
-		return 2;
+		return E_AV_RENDERER_ERROR;
 	}
 
-	return 0;
+	return AV_OK;
 }
 
 void windx12_start(av_windx12_interface &itf) {
