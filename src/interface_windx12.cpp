@@ -1,5 +1,5 @@
-#include <avatar/interfaces/windx12.hpp>
 #include <avatar/core/errors.hpp>
+#include <avatar/interfaces/windx12.hpp>
 #include <stdlib.h>
 
 int windx12_allocate(av_windx12_interface *itf) {
