@@ -5,12 +5,12 @@
 
 struct dx12_specifics;
 
-typedef struct dx12_renderer {
+typedef struct s_dx12_renderer {
 		struct dx12_specifics *specifics;
 } dx12_renderer;
 
 extern int  dx12_allocate(dx12_renderer *renderer);
-extern void dX12_destroy(dx12_renderer *renderer);
+extern void dx12_destroy(dx12_renderer *renderer);
 
 extern int dx12_initialize(dx12_renderer &renderer, HWND attached_window);
 

@@ -5,13 +5,13 @@
 
 struct winrt_specifics;
 
-enum winrt_events {
+enum e_winrt_events {
 	WINRT_QUIT,
 	WINRT_NONE
 };
 
-typedef struct winrt_platform {
-		enum winrt_events       last_event;
+typedef struct s_winrt_platform {
+		enum e_winrt_events     last_event;
 		struct winrt_specifics *specifics;
 } winrt_platform;
 

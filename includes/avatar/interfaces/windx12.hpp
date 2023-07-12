@@ -5,7 +5,7 @@
 #include <avatar/platforms/winrt.hpp>
 #include <avatar/renderers/directx12.hpp>
 
-typedef struct windx12_interface {
+typedef struct s_windx12_interface {
 		winrt_platform platform;
 		dx12_renderer  renderer;
 } av_windx12_interface;

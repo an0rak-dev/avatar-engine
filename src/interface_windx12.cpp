@@ -26,7 +26,7 @@ void windx12_destroy(av_windx12_interface *itf) {
 		return;
 	}
 
-	dX12_destroy(&itf->renderer);
+	dx12_destroy(&itf->renderer);
 	winrt_destroy(&itf->platform);
 }
 
