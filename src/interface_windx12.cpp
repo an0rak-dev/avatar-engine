@@ -2,6 +2,9 @@
 #include <avatar/interfaces/windx12.hpp>
 #include <stdlib.h>
 
+#define WINDOW_WIDTH  1080
+#define WINDOW_HEIGHT 720
+
 int windx12_allocate(av_windx12_interface *itf) {
 	if (NULL == itf) {
 		return E_AV_INVALID_ARGUMENT;
@@ -28,7 +31,7 @@ void windx12_destroy(av_windx12_interface *itf) {
 }
 
 int windx12_init(av_windx12_interface &itf, const wchar_t *app_name) {
-	if (0 != winrt_initialize(itf.platform, app_name, 1080, 720)) {
+	if (0 != winrt_initialize(itf.platform, app_name, WINDOW_WIDTH, WINDOW_HEIGHT)) {
 		return E_AV_PLATFORM_ERROR;
 	}
 
