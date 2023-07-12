@@ -1,7 +1,7 @@
 #ifndef AVATAR_CORE_COLOR
 #define AVATAR_CORE_COLOR
 
-typedef struct color {
+typedef struct s_color {
 		double red;
 		double green;
 		double blue;

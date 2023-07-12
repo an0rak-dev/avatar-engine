@@ -3,17 +3,17 @@
 
 #include <avatar/core/scene.hpp>
 
-typedef struct noop_interface {
+typedef struct s_noop_interface {
 		int remaining_events;
 } av_noop_interface;
 
-int  noop_allocate(noop_interface *itf);
-void noop_destroy(noop_interface *itf);
+int  noop_allocate(av_noop_interface *itf);
+void noop_destroy(av_noop_interface *itf);
 
-int  noop_init(noop_interface &itf, const wchar_t *app_name);
-void noop_start(noop_interface &itf);
-bool noop_is_running(noop_interface &itf);
-void noop_poll_event(noop_interface &itf);
+int  noop_init(av_noop_interface &itf, const wchar_t *app_name);
+void noop_start(av_noop_interface &itf);
+bool noop_is_running(av_noop_interface &itf);
+void noop_poll_event(av_noop_interface &itf);
 void noop_render(av_noop_interface &itf, av_scene &scene);
 
 #define av_interface            noop_interface
