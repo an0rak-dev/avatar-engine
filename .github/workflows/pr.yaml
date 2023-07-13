@@ -48,3 +48,12 @@ jobs:
         shell: cmd
         run: |
           "%VCINSTALL%\Tools\Llvm\bin\clang-tidy.exe" --config-file=misc\.clang-tidy src\* -- -Iincludes
+  check-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen
+      - name: Check documentation
+        run: doxygen misc/Doxyfile
