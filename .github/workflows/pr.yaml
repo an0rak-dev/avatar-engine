@@ -54,6 +54,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Doxygen
-        run: sudo apt-get update && sudo apt-get install -y doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
       - name: Check documentation
         run: doxygen misc/Doxyfile
