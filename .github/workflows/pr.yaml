@@ -47,7 +47,7 @@ jobs:
       - name: Lint the code
         shell: cmd
         run: |
-          "%VCINSTALL%\Tools\Llvm\bin\clang-tidy.exe" --config-file=misc\.clang-tidy src\* -- -Iincludes
+          "%VCINSTALL%\Tools\Llvm\bin\clang-tidy.exe" --config-file=misc\.clang-tidy src\*.cpp -- -Iincludes
   check-docs:
     runs-on: ubuntu-latest
     steps:

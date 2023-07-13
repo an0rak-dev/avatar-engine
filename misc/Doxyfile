@@ -32,6 +32,8 @@ GENERATE_TODOLIST      = YES
 GENERATE_TESTLIST      = YES
 GENERATE_BUGLIST       = YES
 GENERATE_DEPRECATEDLIST= YES
+GENERATE_LATEX         = NO
+GENERATE_TREEVIEW      = YES
 
 #---------------------------------------------------------------------------
 # Configuration options related to warning and progress messages
