@@ -3,8 +3,8 @@
 
 #include <avatar/core/color.hpp>
 
-typedef struct scene {
-	av_color background_color;
+typedef struct s_scene {
+		av_color background_color;
 } av_scene;
 
 #endif

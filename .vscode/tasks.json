@@ -2,8 +2,8 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "[Engine - Core] Build",
-            "dependsOn": "[Engine - Core] Compile",
+            "label": "Build",
+            "dependsOn": "Compile",
             "command": "lib.exe",
             "args": [
                 "/nologo",
@@ -24,8 +24,8 @@
         },
         {
             "type": "cppbuild",
-            "label": "[Engine - Core] Compile",
-            "dependsOn": "[Engine - Core] Prepare",
+            "label": "Compile",
+            "dependsOn": "Prepare",
             "command": "cl.exe",
             "args": [
                 "/Zi",
@@ -50,8 +50,40 @@
             "detail": "Compile all the sources of the Avatar Engine core module."
         },
         {
+            "type":"shell",
+            "label": "Format",
+            "windows":{
+              "command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\Llvm\\bin\\clang-format.exe",
+              "args": [
+                  "--Werror",
+                  "-i",
+                  "--ferror-limit=0",
+                  "--style=file:${workspaceFolder}\\misc\\.clang-format",
+                  "${workspaceFolder}\\includes\\avatar\\core\\*.hpp",
+                  "${workspaceFolder}\\includes\\avatar\\interfaces\\*.hpp",
+                  "${workspaceFolder}\\includes\\avatar\\platforms\\*.hpp",
+                  "${workspaceFolder}\\includes\\avatar\\renderers\\*.hpp",
+                  "${workspaceFolder}\\src\\*.cpp"
+              ]
+            },
+        },
+        {
+            "type":"shell",
+            "label": "Lint",
+            "windows":{
+              "command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\Llvm\\bin\\clang-tidy.exe",
+              "args": [
+                  "--config-file=${workspaceFolder}\\misc\\.clang-tidy",
+                  "${workspaceFolder}\\src\\*.cpp",
+                  "--",
+                  "-I${workspaceFolder}\\includes",
+                  "-DUNICODE",
+              ]
+            },
+        },
+        {
           "type":"shell",
-          "label": "[Engine - Core] Prepare",
+          "label": "Prepare",
           "windows":{
             "command": "cmd.exe",
             "args": [

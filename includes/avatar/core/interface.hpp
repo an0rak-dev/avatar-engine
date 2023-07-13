@@ -11,9 +11,9 @@ bellow.
 */
 
 #if defined(PLATFORM_WINRT) && defined(RENDERER_DX12)
-#include <avatar/interfaces/windx12.hpp>
-#else 
-#include <avatar/interfaces/noop.hpp>
+#	include <avatar/interfaces/windx12.hpp>
+#else
+#	include <avatar/interfaces/noop.hpp>
 #endif
 
 #endif
